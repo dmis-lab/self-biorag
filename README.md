@@ -3,7 +3,7 @@
 This is a repository for [Improving Medical Reasoning through Retrieval and Self-Reflection with Retrieval-Augmented Large Language Models]()
  by Minbyul Jeong, Jiwoong Sohn, Mujeen Sung, and Jaewoo Kang.
 
-[7B Model]() | [13B Model]() | [Paper]() | [Training data]() | [Summary]()
+[7B Model](https://huggingface.co/selfbiorag/selfbiorag_7b) | [13B Model](https://huggingface.co/selfbiorag/selfbiorag_13b) | [Paper]() | [Training data]() | [Summary]()
 
 **Self-BioRAG** is a framework reliable for biomedical and clinical text instructions that specializes in self-reflection to retrieve, criticize, and generate explanations while preserving generation quality and reasoning ability.
 
@@ -12,26 +12,46 @@ The retrieval-augmented generation (RAG) framework performs document searches un
 ![](figures/intro_figure.png)
 
 ## Updates
+* \[**Jan 26, 2024**\] **Self-BioRAG** has been released.
 
 ## Content
 1. [Installation](#installation)
 2. [Quick Usage](#quick-usage)
-3. [Retriever](#retriever)
-4. [Critic LM](#critic-lm)
-5. [Generator LM](#generator-lm)
-6. [Inference](#inference)
-7. [FAQ](#faq)
-8. [Citation](#citation)
-9. [Contact Information](#contact-information)
+3. [Overall Workflow](#overall-workflow)
+4. [Retriever](#retriever)
+5. [Critic LM](#critic-lm)
+6. [Generator LM](#generator-lm)
+7. [Inference](#inference)
+8. [FAQ](#faq)
+9. [Citation](#citation)
+10. [Contact Information](#contact-information)
 
 ## Installation
-installation
+Please create a conda environment by running the command below.
 
+```
+conda env create -f selfbiorag.yaml
+```
 
+If you try to install Python libraries through requirements by running the command below.
+```
+conda create -n selfbiorag python=3.10
+pip install -r requirements.txt
+```
 
 ## Quick Usage
-quick usage
+You can download Self-BioRAG from HuggingFace hub.
+For inference, we recommend using [vllm](https://vllm.readthedocs.io/en/latest/) to speed up inference.
+```py
+from vllm import LLM, SamplingParams
 
+model = LLM("selfbiorag/selfbiorag_7b", download_dir=your_download_path_to_load, dtype="half")
+
+```
+
+
+## Overall Workflow
+overall workflow
 ![](figures/example_figure.png)
 
 ## Retriever
