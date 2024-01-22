@@ -18,24 +18,27 @@ The retrieval-augmented generation (RAG) framework performs document searches un
 1. [Installation](#installation)
 2. [Quick Usage](#quick-usage)
 3. [Overall Workflow](#overall-workflow)
-4. [Retriever](#retriever)
-5. [Critic LM](#critic-lm)
-6. [Generator LM](#generator-lm)
-7. [Inference](#inference)
-8. [FAQ](#faq)
-9. [Citation](#citation)
-10. [Contact Information](#contact-information)
+4. [Instruction Sets](#instruction-sets)
+5. [Retriever](#retriever)
+6. [Critic LM](#critic-lm)
+7. [Generator LM](#generator-lm)
+8. [Inference](#inference)
+9. [FAQ](#faq)
+10. [Citation](#citation)
+11. [Contact Information](#contact-information)
 
 ## Installation
 Please create a conda environment by running the command below.
 
 ```
 conda env create -f selfbiorag.yaml
+conda activate selfbiorag
 ```
 
 If you try to install Python libraries through requirements by running the command below.
 ```
 conda create -n selfbiorag python=3.10
+conda activate selfbiorag
 pip install -r requirements.txt
 ```
 
@@ -46,13 +49,32 @@ For inference, we recommend using [vllm](https://vllm.readthedocs.io/en/latest/)
 from vllm import LLM, SamplingParams
 
 model = LLM("selfbiorag/selfbiorag_7b", download_dir=your_download_path_to_load, dtype="half")
+sampling_params = SamplingParams(temperature=0.0, top_p=1.0, max_tokens=100, skip_special_tokens=False)
 
+query_1 = "Classify the given radiology report according to which part of the body it is related to (e.g., chest, abdomen, brain, etc). The intervertebral discs at L4-L5 and L5-S1 are showing signs of degeneration with slight bulging impinging on the adjacent nerve root"
+query_2 = "Summarize the key points about the role of BRCA1 and BRCA2 gene mutation in increased risk for breast cancer."
+queries = [query_1, query_2]
+
+preds = model.generate([query for query in queries], sampling_params)
+for pred in preds:
+    print ("Model prediction: ", pred.outputs[0].text)
+```
+
+Output
+```
+Model prediction: 
+Model prediction: 
 ```
 
 
+
 ## Overall Workflow
-overall workflow
+Overview of our **Self-BioRAG** process:data construction, training, and inference of Critic LM and Generator LM.
+We construct 120k bioemdical instruction sets using two off-the-shelf instruction sets [Mol-Instruction](https://github.com/zjunlp/Mol-Instructions) and [MedInstruct](https://github.com/XZhang97666/AlpaCare/tree/master) and one self-generated biomedical instruction set. 
 ![](figures/example_figure.png)
+
+## Instruction Sets
+our instruction sets and full data load
 
 ## Retriever
 retriever
