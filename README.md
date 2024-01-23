@@ -75,6 +75,23 @@ We construct 120k bioemdical instruction sets using two off-the-shelf instructio
 
 ## Datasets
 Download our overall data: [Instruction-Sets](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/instruction.tar.gz), [Retriever](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever.tar.gz), [Critic-LM](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/critic.tar.gz), [Generator-LM](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/generator.tar.gz)
+You will need ~10.5GB for all process of datasets.
+
+```
+mkdir data
+cd data
+wget http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/instruction.tar.gz
+wget http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever.tar.gz
+wget http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/critic.tar.gz
+wget http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/generator.tar.gz
+```
+
+```
+tar -zxvf instruction.tar.gz
+tar -zxvf retriever.tar.gz
+tar -zxvf critic.tar.gz
+tar -zxvf generator.tar.gz
+```
 
 ## Retriever
 retriever
