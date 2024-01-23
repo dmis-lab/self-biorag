@@ -18,7 +18,7 @@ The retrieval-augmented generation (RAG) framework performs document searches un
 1. [Installation](#installation)
 2. [Quick Usage](#quick-usage)
 3. [Overall Workflow](#overall-workflow)
-4. [Instruction Sets](#instruction-sets)
+4. [Datasets](#datasets)
 5. [Retriever](#retriever)
 6. [Critic LM](#critic-lm)
 7. [Generator LM](#generator-lm)
@@ -73,14 +73,22 @@ Overview of our **Self-BioRAG** process:data construction, training, and inferen
 We construct 120k bioemdical instruction sets using two off-the-shelf instruction sets [Mol-Instruction](https://github.com/zjunlp/Mol-Instructions) and [MedInstruct](https://github.com/XZhang97666/AlpaCare/tree/master) and one self-generated biomedical instruction set. 
 ![](figures/example_figure.png)
 
-## Instruction Sets
-our instruction sets and full data load
+## Datasets
+Download our overall data: [Instruction-Sets](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/instruction.tar.gz), [Retriever](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever.tar.gz), [Critic-LM](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/critic.tar.gz), [Generator-LM](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/generator.tar.gz)
 
 ## Retriever
 retriever
 
 ## Critic LM
-critic lm
+* Data Creation
+```
+
+```
+
+
+* Training
+
+* Inference
 
 ## Generator LM
 generator lm
