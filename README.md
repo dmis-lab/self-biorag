@@ -3,7 +3,7 @@
 This is a repository for [Improving Medical Reasoning through Retrieval and Self-Reflection with Retrieval-Augmented Large Language Models]()
  by Minbyul Jeong, Jiwoong Sohn, Mujeen Sung, and Jaewoo Kang.
 
-[7B Model](https://huggingface.co/selfbiorag/selfbiorag_7b) | [13B Model](https://huggingface.co/selfbiorag/selfbiorag_13b) | [Paper]() | [Training data]() | [Summary]()
+[7B Model](https://huggingface.co/selfbiorag/selfbiorag_7b) | [13B Model](https://huggingface.co/selfbiorag/selfbiorag_13b) | [Paper]() | [Training data]() | [Summary]() | [Critic Model](https://huggingface.co/selfbiorag/selfbiorag_7b_critic)
 
 **Self-BioRAG** is a framework reliable for biomedical and clinical text instructions that specializes in self-reflection to retrieve, criticize, and generate explanations while preserving generation quality and reasoning ability.
 
@@ -97,18 +97,53 @@ tar -zxvf generator.tar.gz
 retriever
 
 ## Critic LM
-* Data Creation
+The process of data creation for critic language model is composed of 6 steps as follows.
+
+1. Create Retrieval Data for Three Reflective tokens: Retreival, Relevance, and Supportive
+```
+cd data_creation/critic/gpt4_reward
+$ export DATA_PATH=path_to_your_data_folder
+python create_retrieval_data.py --input_files $DATA_PATH/instruction/all_biomedical_instruction.json --output_file $DATA_PATH/retriever/medcpt_top10_evidence_createret.json --multiple_sent --initial_retrieval_file $DATA_PATH/retriever/medcpt_top10_evidence.json
 ```
 
+2. Make Utility Token Data
+```
+python chatgpt_utility.py --input_file_name $DATA_PATH/critic/critic_5k_utility.json --model_name gpt-4 --output_file_name $DATA_PATH/critic/critic_utility_chatgpt.json
 ```
 
+3. Make Retrieval Token Data
+```
+python chatgpt_need_retrieval.py --input_files $DATA_PATH/critic/critic_5k_retrieval.json --output_file_name $DATA_PATH/critic/critic_retrieval_chatgpt.json --model_name gpt-4 --multi_retrieval --three_way
+```
+
+4. Make Relevance Token Data
+```
+python chatgpt_relevance.py --input_files $DATA_PATH/critic/critic_5k_retrieval.json --output_file_name $DATA_PATH/critic/critic_relevance_chatgpt.json --model_name gpt-4 --multi_retrieval
+```
+
+5. Make Supportive Token Data
+```
+python chatgpt_groundness.py --input_files $DATA_PATH/critic/critic_5k_retrieval.json --output_file_name $DATA_PATH/critic/critic_groundness_chatgpt.json --model_name gpt-4 --multi_retrieval
+```
+
+6. Combine GPT-4 API Calls Reward
+```
+python combine_chat_gpt_reward.py --ut_file $DATA_PATH/critic/critic_utility_chatgpt.json --multi_ret_file $DATA_PATH/critic/critic_retrieval_chatgpt.json --multi_ground_file $DATA_PATH/critic/critic_groundness_chatgpt.json --rel_file $DATA_PATH/critic/critic_relevance_chatgpt.json --output_file_name $DATA_PATH/critic/bio_critic_train
+```
+
+After constructing the train dataset, we train the Critic LM as follows.
 
 * Training
-
-* Inference
+```
+cd ..
+mkdir critic_lm
+torchrun --nproc_per_node=8 --master_port 2569 train_special_tokens.py --model_name_or_path selfrag/self_rag_critic --data_path $DATA_PATH/critic/bio_critic_train.json --bf16 True --output_dir critic_lm/selfbiorag_7b_critic/ --num_train_epochs 3 --per_device_train_batch_size 1 --per_device_eval_batch_size 1 --gradient_accumulation_steps 8 --evaluation_strategy no --save_strategy steps --save_steps 300 --save_total_limit 50 --learning_rate 2e-5 --weight_decay 0. --warmup_ratio 0.01 --lr_scheduler_type cosine --logging_steps 10 --fsdp "full_shard auto_wrap"
+```
 
 ## Generator LM
-generator lm
+* Data Construction
+
+* Training
 
 ## Inference
 inference 
