@@ -71,6 +71,7 @@ Model prediction:
 ## Overall Workflow
 Overview of our **Self-BioRAG** process:data construction, training, and inference of Critic LM and Generator LM.
 We construct 120k bioemdical instruction sets using two off-the-shelf instruction sets [Mol-Instruction](https://github.com/zjunlp/Mol-Instructions) and [MedInstruct](https://github.com/XZhang97666/AlpaCare/tree/master) and one self-generated biomedical instruction set. We first sample 5k instructions to generate reflective tokens via GPT-4 API calls and then train the critic LM $C$ with these instructions. Using trained critic LM $C$, we filter out mispredicted reflective tokens, such as [Continue Generation]. We preserve 84k instruction sets annotated with pre-defined reflective tokens to train the generator LM $M$. Note that critic LM $C$ is only used for annotating reflective tokens used to filter instruction sets to train generator LM $M$. After training, the model $M$ can predict whether or not to use the retrieval method and combine the results of evidence and encoded knowledge to answer the question.
+
 ![](figures/example_figure.png)
 
 ## Datasets
