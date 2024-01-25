@@ -9,7 +9,7 @@ from openai.error import APIError, Timeout, APIConnectionError
 import jsonlines
 import random
 
-openai.api_key_path = "/nvme1/minbyul/self-rag/key.txt"
+openai.api_key_path = "your_path_to_use_chatgpt_api"
 @backoff.on_exception(backoff.expo, openai.error.RateLimitError)
 def completions_with_backoff(**kwargs):
     return openai.ChatCompletion.create(**kwargs)

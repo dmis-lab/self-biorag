@@ -61,7 +61,6 @@ def main():
     id2evidence = None
     if args.initial_retrieval_file is not None:
         data = json.load(open(args.initial_retrieval_file))
-        # sent_idx 및 preceding_sentences는 key를 빼거나 value를 None
         if "id" in data[0]:
             if "ctxs" in data[0]:
                 id2evidence = {item["id"]: item["ctxs"][0] for item in data if ("sent_idx" not in item or item["sent_idx"] == 0)}
@@ -130,8 +129,6 @@ def main():
             except:
                 q_id = "bio_"+str(idx)
             instruction = item["instruction"]
-            # if item["dataset_name"] in ["nq", "fever", "wow"] and "\n\nInput: " in instruction:
-            #     instruction = instruction.split("\n\nInput: ")[1]
             output = item["output"]
             input = item["input"]
             # add output for retrieval

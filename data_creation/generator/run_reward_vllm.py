@@ -11,12 +11,6 @@ import argparse
 from tqdm import tqdm
 import jsonlines
 from vllm import LLM, SamplingParams
-import wandb
-
-wandb.init(project="self-biorag")
-"""
-python run_reward_vllm.py --input_file /scratch/x2696a10/self-rag/data/biomedical_instruction_for_generator.json --model_name /scratch/x2696a10/self-rag/critic_lm/llama2-7b-contriever-msmarco-40k-lr1e-5/ --task 'multi_retrieval_three_way_instruction' --inst_mode multi_retrieval_three_way_instruction --input_mode retrieval_multi_input --metric match --result_fp /scratch/x2696a10/self-rag/data/need_retrieval_for_generator.json --split test --three_way
-"""
 
 ALPACA_PROMPT_DICT = {
     "prompt_input": (
