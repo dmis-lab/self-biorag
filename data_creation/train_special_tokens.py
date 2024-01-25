@@ -17,7 +17,6 @@ import logging
 from dataclasses import dataclass, field
 from typing import Optional, Dict, Sequence
 
-import wandb
 import torch
 import transformers
 from torch.utils.data import Dataset
@@ -25,13 +24,6 @@ from transformers import Trainer
 import json
 import io
 import os
-
-import sys
-# src_module_directory = "/nvme1/minbyul/self-rag/"
-src_module_directory = "/scratch/x2696a10/self-rag/"
-sys.path.append(src_module_directory)
-
-wandb.init(project="self-biorag")
 
 from retrieval_lm.llama_flash_attn_monkey_patch import replace_llama_attn_with_flash_attn
 
