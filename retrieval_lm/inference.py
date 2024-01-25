@@ -472,32 +472,31 @@ def main():
     
 
     # "med_qa", "medmc_qa", "pubmed_qa", "mmlu", "live_qa", "medication_qa", "mmlu_clinical_knowledge", "mmlu_anatomy", "mmlu_college_biology", "mmlu_college_medicine", "mmlu_medical_genetics", "mmlu_professional_medicine"
-    # evaluation_list = ["med_qa", "medmc_qa", "pubmed_qa", "mmlu_clinical_knowledge", "mmlu_anatomy", "mmlu_college_biology", "mmlu_college_medicine", "mmlu_medical_genetics", "mmlu_professional_medicine"]
-    evaluation_list = ["mmlu_clinical_knowledge", "mmlu_anatomy", "mmlu_college_biology", "mmlu_college_medicine", "mmlu_medical_genetics", "mmlu_professional_medicine"]
+    evaluation_list = ["med_qa", "medmc_qa", "pubmed_qa", "mmlu_clinical_knowledge", "mmlu_anatomy", "mmlu_college_biology", "mmlu_college_medicine", "mmlu_medical_genetics", "mmlu_professional_medicine"]
     for eval_name in tqdm.tqdm(evaluation_list, desc="total evaluation"):
         test_examples = []
         evidences = []
         train_evidences = []
-        with open(f"./data/benchmark/{eval_name}_test.jsonl", "r") as fp:
+        with open(f"../data/benchmark/{eval_name}_test.jsonl", "r") as fp:
             lines = fp.readlines()
             for line in lines:
                 test_examples.append(json.loads(line))
 
         if args.do_retrieve:
-            with open(f"./data/benchmark/evidence/all/retrieved_{eval_name}_test.jsonl", "r") as fp:
+            with open(f"../data/benchmark/evidence/all/retrieved_{eval_name}_test.jsonl", "r") as fp:
                 lines = fp.readlines()
                 for line in lines:
                     evidences.extend(json.loads(line))
 
             # mmlu use evidence with medpalm examples
             if "mmlu" in eval_name:
-                with open(f"./data/benchmark/evidence/training/medpalm_mmlu_evidence.json", "r") as fp:
+                with open(f"../data/benchmark/evidence/training/medpalm_mmlu_evidence.json", "r") as fp:
                     lines = fp.readlines()
                     for line in lines:
                         train_evidences.extend(json.loads(line))
             else:
                 # evidence - 240105
-                with open(f"./data/benchmark/evidence/training/retrieved_{eval_name}_train.jsonl", "r") as fp:
+                with open(f"../data/benchmark/evidence/training/retrieved_{eval_name}_train.jsonl", "r") as fp:
                     lines = fp.readlines()
                     for line in lines:
                         train_evidences.extend(json.loads(line))            
@@ -506,7 +505,7 @@ def main():
             if args.use_few_shot:
                 if args.use_train_dataset:
                     train_examples = []
-                    train_examples = json.load(open(f"./data/benchmark/{eval_name}_train_gpt4.json"))
+                    train_examples = json.load(open(f"../data/benchmark/{eval_name}_train_gpt4.json"))
                     # with open(f"./data/benchmark/{eval_name}_train.json", "r") as fp:
                     # with open(f"./data/benchmark/{eval_name}_train_gpt4.jsonl", "r") as fp:
                     #     lines = fp.readlines()
@@ -522,7 +521,7 @@ def main():
                     #     te_result = torch.from_numpy(te_embed_load).to('cuda')
                     
                     # knn sampling - use all
-                    if os.path.isfile(f"./data/benchmark/{eval_name}_train_gpt4_embed.npy") and os.path.isfile(f"./data/benchmark/{eval_name}_test_embed.npy"):
+                    if os.path.isfile(f"../data/benchmark/{eval_name}_train_gpt4_embed.npy") and os.path.isfile(f"../data/benchmark/{eval_name}_test_embed.npy"):
                         tr_embed_load = np.load(f"./data/benchmark/{eval_name}_train_gpt4_embed.npy")
                         tr_result = torch.from_numpy(tr_embed_load).to('cuda')
                         te_embed_load = np.load(f"./data/benchmark/{eval_name}_test_embed.npy")
@@ -702,12 +701,12 @@ def main():
                 inst['prediction'] = preds[0]
 
             if (inst_idx+1) % 10 == 0:
-                with open(f"./data/predictions/{args.write_name}_{eval_name}_test.jsonl_tmp", "w") as outfile:
+                with open(f"../data/predictions/{args.write_name}_{eval_name}_test.jsonl_tmp", "w") as outfile:
                     for inst in test_examples:
                         outfile.write(json.dumps(inst))
                         outfile.write("\n")
 
-        with open(f"./data/predictions/{args.write_name}_{eval_name}_test.jsonl", "w") as outfile:
+        with open(f"../data/predictions/{args.write_name}_{eval_name}_test.jsonl", "w") as outfile:
             for inst in test_examples:
                 outfile.write(json.dumps(inst))
                 outfile.write("\n")

@@ -104,7 +104,11 @@ The process of data creation for critic language model is composed of 6 steps as
 ```
 cd data_creation/critic/gpt4_reward
 $ export DATA_PATH=path_to_your_data_folder
-python create_retrieval_data.py --input_files $DATA_PATH/instruction/all_biomedical_instruction.json --output_file $DATA_PATH/retriever/medcpt_top10_evidence_createret.json --multiple_sent --initial_retrieval_file $DATA_PATH/retriever/medcpt_top10_evidence.json
+python create_retrieval_data.py \\
+--input_files $DATA_PATH/instruction/all_biomedical_instruction.json \\
+--output_file $DATA_PATH/retriever/medcpt_top10_evidence_createret.json \\
+--multiple_sent \\
+--initial_retrieval_file $DATA_PATH/retriever/medcpt_top10_evidence.json
 ```
 
 2. Data Construction for Utility Token
