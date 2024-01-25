@@ -95,7 +95,7 @@ tar -zxvf generator.tar.gz
 ```
 
 ## Retriever
-retriever
+TBD
 
 ## Critic LM
 The process of data creation for critic language model is composed of 6 steps as follows.
@@ -323,10 +323,10 @@ python inference.py \
 You could use your own trained model or our hugginface model [Self-BioRAG 7B](https://huggingface.co/selfbiorag/selfbiorag_7b) to inference.
 
 ## FAQ
-FAQ
+TBD
 
 ## Citation
-Citation
+TBD
 
 ## Contact Information
 For help or issues using **Self-BioRAG**, please submit a GitHub issue. Please contact Minbyul Jeong (`minbyuljeong (at) korea.ac.kr`) for communication related to **Self-BioRAG**.
