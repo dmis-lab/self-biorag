@@ -10,15 +10,11 @@ import jsonlines
 import random
 
 import io
-openai.api_key_path = "/nvme1/minbyul/self-rag/key.txt"
+openai.api_key_path = "your_path_to_use_chatgpt_api"
 
 @backoff.on_exception(backoff.expo, openai.error.RateLimitError)
 def completions_with_backoff(**kwargs):
     return openai.ChatCompletion.create(**kwargs)
-
-"""
-python chatgpt_utility.py --input_file_name /nvme1/minbyul/biomedical_instruction_data/ --model_name gpt-4 --output_file_name /nvme1/minbyul/biomedical_instruction_data/total_bio_instruction_data_sample.json --n 300
-"""
 
 
 PROMPT_DICT = {
@@ -104,7 +100,6 @@ def _make_r_io_base(f, mode: str):
 
 def main():
     parser = argparse.ArgumentParser()
-    # parser.add_argument('--input_file_name', type=str)
     parser.add_argument('--input_file_name', type=str, nargs='+')
     parser.add_argument('--output_file_name', type=str)
     parser.add_argument('--model_name', type=str)

@@ -4,9 +4,6 @@ import argparse
 import random
 from collections import Counter
 
-"""
- python combine_chat_gpt_reward.py --ut_file /nvme1/minbyul/biomedical_instruction_data/isutil_bio_instruction_data_5k.json --multi_ret_file /nvme1/minbyul/biomedical_instruction_data/isret_bio_instruction_data_9k.json_tmp --multi_ground_file /nvme1/minbyul/biomedical_instruction_data/issup_bio_instruction_data_9k.json_tmp --rel_file /nvme1/minbyul/biomedical_instruction_data/isrel_bio_instruction_data_9k.json_tmp --output_file_name /nvme1/minbyul/biomedical_instruction_data/combine_bio_instruction_data_9k
- """
 
 
 PROMPT_DICT = {
@@ -212,10 +209,8 @@ def main():
     parser.add_argument('--ut_file', type=str, nargs="+")
     parser.add_argument('--ret_file', type=str, nargs="+")
     parser.add_argument('--multi_ret_file', type=str, nargs="+")
-    # parser.add_argument('--ground_file', type=str,  nargs="+")
     parser.add_argument('--multi_ground_file', type=str,  nargs="+")
     parser.add_argument('--rel_file', type=str, nargs="+")
-    # parser.add_argument('--multi_retrieval', action="store_true")
     parser.add_argument('--output_file_name', type=str)
     args = parser.parse_args()
 

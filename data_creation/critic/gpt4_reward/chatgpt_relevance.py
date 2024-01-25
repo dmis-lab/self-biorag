@@ -9,14 +9,11 @@ from openai.error import APIError, Timeout, APIConnectionError
 import jsonlines
 import random
 
-openai.api_key_path = "/nvme1/minbyul/self-rag/key3.txt"
+openai.api_key_path = "your_path_to_use_chatgpt_api"
 @backoff.on_exception(backoff.expo, openai.error.RateLimitError)
 def completions_with_backoff(**kwargs):
     return openai.ChatCompletion.create(**kwargs)
 
-"""
-python chatgpt_relevance.py --input_files /nvme1/minbyul/biomedical_instruction_data/isevi_top1_bio_instruction_data_sample.json --output_file_name /nvme1/minbyul/biomedical_instruction_data/isrel_bio_instruction_data_sample.json --model_name gpt-4 --multi_retrieval
-"""
 
 KNOWLEDGE_INSTRUCTIONS = {"nq": "Please answer the following questions using the shortest possible response. For example, if the question asks 'What is the capital of France?'', you can simply reply with 'Paris'.",
                           "fever": "Determine whether the following statement is true or false.",
@@ -133,16 +130,10 @@ def main():
     parser.add_argument('--input_files', type=str, nargs='+')
     parser.add_argument('--output_file_name', type=str)
     parser.add_argument('--multi_retrieval', action="store_true")
-    # parser.add_argument('--api_key', type=str)
-    # parser.add_argument('--org_name', type=str)
     parser.add_argument('--model_name', type=str, default="gpt-4")
     parser.add_argument('--n', type=int, default=None)
     parser.add_argument('--use_bm25', action="store_true")
     args = parser.parse_args()
-
-    # with open(args.api_key) as f:
-    #     openai.api_key = f.read()[:-1]
-    # openai.organization = args.org_name
 
     examples = []
     for input_file in args.input_files:
@@ -164,7 +155,7 @@ def main():
 
     print(Counter(task_types))
 
-    for idx, example in tqdm(enumerate(examples[4238:])):
+    for idx, example in tqdm(enumerate(examples)):
         if "output" not in example and "answers" in example:
             example["output"] = example["answers"][0] if type(
                 example["answers"]) is list else example["answers"]

@@ -9,22 +9,14 @@ from openai.error import APIError, Timeout, APIConnectionError
 import jsonlines
 import random
 
-import sys
-src_module_directory = "/nvme1/minbyul/self-rag/retrieval_lm/"
-sys.path.append(src_module_directory)
-
 from passage_retrieval import Retriever
 from transformers import AutoTokenizer
 
-openai.api_key_path = "/nvme1/minbyul/self-rag/key.txt"
+openai.api_key_path = "your_path_to_use_chatgpt_api"
 
 @backoff.on_exception(backoff.expo, openai.error.RateLimitError)
 def completions_with_backoff(**kwargs):
     return openai.ChatCompletion.create(**kwargs)
-
-"""
-python chatgpt_need_retrieval.py --input_files /nvme1/minbyul/biomedical_instruction_data/isevi_top1_bio_instruction_data_sample.json_tmp --output_file_name /nvme1/minbyul/biomedical_instruction_data/isret_bio_instruction_data_sample.json --model_name gpt-4 --multi_retrieval --three_way
-"""
 
 
 PROMPT_DICT = {
@@ -237,7 +229,7 @@ def main():
         else:
             examples = examples[:args.n]
 
-    for idx, example in tqdm(enumerate(examples[4195:])):
+    for idx, example in tqdm(enumerate(examples)):
         # input = process_input(
         #     example, multi_retrieval=args.multi_retrieval, three_way=args.three_way)
         input = process_bioinput(
