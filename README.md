@@ -3,7 +3,7 @@
 This is a repository for [Improving Medical Reasoning through Retrieval and Self-Reflection with Retrieval-Augmented Large Language Models]()
  by Minbyul Jeong, Jiwoong Sohn, Mujeen Sung, and Jaewoo Kang.
 
-[7B Model](https://huggingface.co/dmis-lab/selfbiorag_7b) | [13B Model](https://huggingface.co/dmis-lab/selfbiorag_13b) | [Paper]() | [Training data]() | [Summary](#overall-workflow) | [Critic Model](https://huggingface.co/dmis-lab/selfbiorag_7b_critic)
+[7B Model](https://huggingface.co/dmis-lab/selfbiorag_7b) | [13B Model](https://huggingface.co/dmis-lab/selfbiorag_13b) | [Critic Model](https://huggingface.co/dmis-lab/selfbiorag_7b_critic) | [Training data](#datasets) | [Summary](#overall-workflow) | [Paper]()
 
 **Self-BioRAG** is a framework reliable for biomedical and clinical text instructions that specializes in self-reflection to retrieve, criticize, and generate explanations while preserving generation quality and reasoning ability.
 
@@ -77,6 +77,8 @@ We construct 120k bioemdical instruction sets using two off-the-shelf instructio
 ## Datasets
 Download our overall data: [Instruction-Sets](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/instruction.tar.gz), [Retriever](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever.tar.gz), [Critic-LM](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/critic.tar.gz), [Generator-LM](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/generator.tar.gz).
 You will need ~10.5GB for all process of datasets.
+
+If you need chunking data (segmented into 128 words w/ 32 words overlap) of [PubMed](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever/PubMed_128.tar.gz), [PMC](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever/PMC_128.tar.gz), [CPG](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever/CPG_128.tar.gz), and [Medical-Textbook](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever/Textbook_128.tar.gz)
 
 ```
 mkdir data
