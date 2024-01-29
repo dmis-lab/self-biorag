@@ -177,4 +177,3 @@ dependencies:
     - xformers==0.0.22
     - xxhash==3.4.1
     - yarl==1.9.2
-prefix: /home/minbyul/miniconda3/envs/selfrag
