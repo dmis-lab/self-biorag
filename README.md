@@ -3,7 +3,7 @@
 This is a repository for [Improving Medical Reasoning through Retrieval and Self-Reflection with Retrieval-Augmented Large Language Models]()
  by Minbyul Jeong, Jiwoong Sohn, Mujeen Sung, and Jaewoo Kang.
 
-[7B Model](https://huggingface.co/selfbiorag/selfbiorag_7b) | [13B Model](https://huggingface.co/selfbiorag/selfbiorag_13b) | [Paper]() | [Training data]() | [Summary]() | [Critic Model](https://huggingface.co/selfbiorag/selfbiorag_7b_critic)
+[7B Model](https://huggingface.co/dmis-lab/selfbiorag_7b) | [13B Model](https://huggingface.co/dmis-lab/selfbiorag_13b) | [Paper]() | [Training data]() | [Summary](#overall-workflow) | [Critic Model](https://huggingface.co/dmis-lab/selfbiorag_7b_critic)
 
 **Self-BioRAG** is a framework reliable for biomedical and clinical text instructions that specializes in self-reflection to retrieve, criticize, and generate explanations while preserving generation quality and reasoning ability.
 
@@ -48,7 +48,7 @@ For inference, we recommend using [vllm](https://vllm.readthedocs.io/en/latest/)
 ```py
 from vllm import LLM, SamplingParams
 
-model = LLM("selfbiorag/selfbiorag_7b", download_dir=your_download_path_to_load, dtype="half")
+model = LLM("dmis-lab/selfbiorag_7b", download_dir=your_download_path_to_load, dtype="half")
 sampling_params = SamplingParams(temperature=0.0, top_p=1.0, max_tokens=100, skip_special_tokens=False)
 
 query_1 = "Classify the given radiology report according to which part of the body it is related to (e.g., chest, abdomen, brain, etc). The intervertebral discs at L4-L5 and L5-S1 are showing signs of degeneration with slight bulging impinging on the adjacent nerve root"
@@ -95,7 +95,7 @@ tar -zxvf generator.tar.gz
 ```
 
 ## Retriever
-TBD
+TBA
 
 ## Critic LM
 The process of data creation for critic language model is composed of 6 steps as follows.
@@ -320,13 +320,13 @@ python inference.py \
 --k 3
 ```
 
-You could use your own trained model or our hugginface model [Self-BioRAG 7B](https://huggingface.co/selfbiorag/selfbiorag_7b) to inference.
+You could use your own trained model or our hugginface model [Self-BioRAG 7B](https://huggingface.co/dmis-lab/selfbiorag_7b) to inference.
 
 ## FAQ
-TBD
+TBA
 
 ## Citation
-TBD
+TBA
 
 ## Contact Information
 For help or issues using **Self-BioRAG**, please submit a GitHub issue. Please contact Minbyul Jeong (`minbyuljeong (at) korea.ac.kr`) for communication related to **Self-BioRAG**.
