@@ -12,7 +12,7 @@ The retrieval-augmented generation (RAG) framework performs document searches un
 ![](figures/intro_figure.png)
 
 ## Updates
-* \[**Jan 26, 2024**\] **Self-BioRAG** has been released.
+* \[**Jan 29, 2024**\] **Self-BioRAG** has been released.
 
 ## Content
 1. [Installation](#installation)
