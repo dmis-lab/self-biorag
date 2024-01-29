@@ -78,7 +78,7 @@ We construct 120k bioemdical instruction sets using two off-the-shelf instructio
 Download our overall data: [Instruction-Sets](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/instruction.tar.gz), [Retriever](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever.tar.gz), [Critic-LM](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/critic.tar.gz), [Generator-LM](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/generator.tar.gz).
 You will need ~10.5GB for all process of datasets.
 
-If you need chunking data (segmented into 128 words w/ 32 words overlap), you could download the data: [PubMed](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever/PubMed_128.tar.gz), [PMC](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever/PMC_128.tar.gz), [CPG](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever/CPG_128.tar.gz), and [Medical-Textbook](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever/Textbook_128.tar.gz)
+If you need chunking data (segmented into 128 words w/ 32 words overlap), you could download the data: [PubMed](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever/PubMed_128.tar.gz), [PMC Full-text](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever/PMC_128.tar.gz), [CPG (Clinical Guideline)](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever/CPG_128.tar.gz), and [Medical Textbook](http://nlp.dmis.korea.edu/projects/selfbiorag-jeong-et-al-2024/data/retriever/Textbook_128.tar.gz)
 
 ```
 mkdir data
