@@ -1,9 +1,9 @@
 # Self-BioRAG: Improving Medical Reasoning through Retrieval and Self-Reflection with Retrieval-Augmented Large Language Models
 
-This is a repository for [Improving Medical Reasoning through Retrieval and Self-Reflection with Retrieval-Augmented Large Language Models]()
+This is a repository for [Improving Medical Reasoning through Retrieval and Self-Reflection with Retrieval-Augmented Large Language Models](https://arxiv.org/abs/2401.15269)
  by Minbyul Jeong, Jiwoong Sohn, Mujeen Sung, and Jaewoo Kang.
 
-[7B Model](https://huggingface.co/dmis-lab/selfbiorag_7b) | [13B Model](https://huggingface.co/dmis-lab/selfbiorag_13b) | [Critic Model](https://huggingface.co/dmis-lab/selfbiorag_7b_critic) | [Training data](#datasets) | [Summary](#overall-workflow) | [Paper]()
+[7B Model](https://huggingface.co/dmis-lab/selfbiorag_7b) | [13B Model](https://huggingface.co/dmis-lab/selfbiorag_13b) | [Critic Model](https://huggingface.co/dmis-lab/selfbiorag_7b_critic) | [Training data](#datasets) | [Summary](#overall-workflow) | [Paper](https://arxiv.org/abs/2401.15269)
 
 **Self-BioRAG** is a framework reliable for biomedical and clinical text instructions that specializes in self-reflection to retrieve, criticize, and generate explanations while preserving generation quality and reasoning ability.
 
