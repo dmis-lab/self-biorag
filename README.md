@@ -59,12 +59,12 @@ preds = model.generate([query for query in queries], sampling_params)
 for pred in preds:
     print ("Model prediction: ", pred.outputs[0].text)
 ```
-
+<!-- 
 Output
 ```
 Model prediction: 
 Model prediction: 
-```
+``` -->
 
 
 
@@ -328,7 +328,14 @@ You could use your own trained model or our hugginface model [Self-BioRAG 7B](ht
 TBA
 
 ## Citation
-TBA
+```
+@article{jeong2024improving,
+  title={Improving Medical Reasoning through Retrieval and Self-Reflection with Retrieval-Augmented Large Language Models},
+  author={Jeong, Minbyul and Sohn, Jiwoong and Sung, Mujeen and Kang, Jaewoo},
+  journal={arXiv preprint arXiv:2401.15269},
+  year={2024}
+}
+```
 
 ## Contact Information
 For help or issues using **Self-BioRAG**, please submit a GitHub issue. Please contact Minbyul Jeong (`minbyuljeong (at) korea.ac.kr`) for communication related to **Self-BioRAG**.
